@@ -14,12 +14,6 @@ This repository is a showcase of the systems and features I build for community 
 - [Voice channels](examples/voice-channel-service.js) — temporary channels and owner controls.
 - [Media, verification, panels, and integrations](docs/coverage.md) — full feature map for the portfolio.
 
-## Run the examples
-
-```bash
-npm test
-```
-
 ---
 
 [GitHub](https://github.com/frsttw) | [Website](https://frstt.dev) | [Email](mailto:joao141-2012@hotmail.com)
