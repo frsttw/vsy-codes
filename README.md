@@ -1,8 +1,6 @@
 # Hi, I'm Frost! 👋
 
-<p align="center">
-  <img src="./assets/frstt-cover.png" alt="Frost holding a @frstt sign" width="560">
-</p>
+![Frost holding a @frstt sign](./assets/frstt-cover-wide.png)
 
 Feel free to explore my app ideas and code concepts here. 🚀
 
