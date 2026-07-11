@@ -16,4 +16,4 @@ This repository is a showcase of the systems and features I build for community 
 
 ---
 
-[GitHub](https://github.com/frsttw) | [Website](https://frstt.dev) | [Email](mailto:joao141-2012@hotmail.com)
+[GitHub](https://github.com/frsttw) | [Website](https://frstt.dev) | [Discord](https://discord.gg/voidsynth) | [Email](mailto:joao141-2012@hotmail.com)
