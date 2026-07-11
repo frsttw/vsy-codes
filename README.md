@@ -1,4 +1,4 @@
-# Hi, I'm Frost! 👋
+# Wsp, I'm Frost! 👋
 
 ![Frost holding a @frstt sign](./assets/frstt-cover-wide.png)
 
