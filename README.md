@@ -1,17 +1,20 @@
-# Código de portfólio
+# Hi, I'm Frost! 👋
 
-Coleção de exemplos em JavaScript voltados a recursos comuns em aplicações de comunidade: economia virtual, ranking de atividade e atendimento por tickets.
+Feel free to explore my app ideas and code concepts here. 🚀
 
-Os módulos foram separados da camada de interface para destacar regras de negócio, validações e contratos simples de integração. Eles não dependem de IDs de servidores, tokens, variáveis de ambiente ou dados de usuários.
+This repository is a showcase of the systems and features I build for community applications. The examples focus on clear business rules, validation, and reusable structure while keeping operational data out of the public code.
 
-## Exemplos
+## Featured code
 
-- [`examples/economy-service.js`](examples/economy-service.js): carteira, banco, recompensa diária, transferências e compra de itens.
-- [`examples/ranking-service.js`](examples/ranking-service.js): XP com cooldown, níveis, ranking paginado e distribuição de posições.
-- [`examples/ticket-service.js`](examples/ticket-service.js): abertura, atribuição e encerramento de tickets com regras de acesso.
-- [`docs/coverage.md`](docs/coverage.md): mapa completo dos domínios cobertos no portfólio.
+- [Economy system](examples/economy-service.js) — wallets, banks, daily rewards, transfers, and shop items.
+- [Ranking system](examples/ranking-service.js) — XP cooldowns, levels, paginated leaderboards, and podiums.
+- [Ticket system](examples/ticket-service.js) — opening, assigning, and closing support requests.
+- [Automation scheduler](examples/automation-scheduler.js) — recurring jobs with isolated failures.
+- [Moderation tools](examples/moderation-service.js) — word filters and action-rate protection.
+- [Voice channels](examples/voice-channel-service.js) — temporary channels and owner controls.
+- [Media, verification, panels, and integrations](docs/coverage.md) — full feature map for the portfolio.
 
-## Executar os testes
+## Run the examples
 
 ```bash
 npm test
@@ -19,4 +22,4 @@ npm test
 
 ---
 
-[GitHub](https://github.com/frsttw) · [Website](https://frstt.dev) · [Email](mailto:joao141-2012@hotmail.com)
+[GitHub](https://github.com/frsttw) | [Website](https://frstt.dev) | [Email](mailto:joao141-2012@hotmail.com)
