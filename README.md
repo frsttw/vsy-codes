@@ -1,5 +1,9 @@
 # Hi, I'm Frost! 👋
 
+<p align="center">
+  <img src="./assets/frstt-cover.png" alt="Frost holding a @frstt sign" width="560">
+</p>
+
 Feel free to explore my app ideas and code concepts here. 🚀
 
 This repository is a showcase of the systems and features I build for community applications. The examples focus on clear business rules, validation, and reusable structure while keeping operational data out of the public code.
