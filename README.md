@@ -9,6 +9,7 @@ This repository is a showcase of the systems and features I build for community 
 ## Featured code
 
 - [Economy system](examples/economy-service.js) — wallets, banks, daily rewards, transfers, and shop items.
+- [Premium shop](examples/premium-shop-service.js) — role catalog, transactional purchases, refunds, and custom-role orders.
 - [Ranking system](examples/ranking-service.js) — XP cooldowns, levels, paginated leaderboards, and podiums.
 - [Ticket system](examples/ticket-service.js) — opening, assigning, and closing support requests.
 - [Automation scheduler](examples/automation-scheduler.js) — recurring jobs with isolated failures.

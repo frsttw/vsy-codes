@@ -4,7 +4,8 @@ Os exemplos são versões independentes das áreas funcionais do aplicativo. A c
 
 | Área do aplicativo | Exemplo público |
 | --- | --- |
-| Economia, loja e recompensas | `examples/economy-service.js` |
+| Economia e recompensas | `examples/economy-service.js` |
+| Loja premium, cargos e pedidos personalizados | `examples/premium-shop-service.js` |
 | XP, níveis, leaderboard e pódio | `examples/ranking-service.js` |
 | Tickets de suporte e orçamento | `examples/ticket-service.js` |
 | Mensagens automáticas, atualizações e tarefas recorrentes | `examples/automation-scheduler.js` |
