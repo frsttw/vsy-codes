@@ -6,6 +6,8 @@ Os exemplos são versões independentes das áreas funcionais do aplicativo. A c
 | --- | --- |
 | Economia e recompensas | `examples/economy-service.js` |
 | Loja premium, cargos e pedidos personalizados | `examples/premium-shop-service.js` |
+| Jogo Crash, multiplicadores e cashout | `examples/crash-game.js` |
+| Persistência de economia e migração de dados | `examples/economy-repository.js` |
 | XP, níveis, leaderboard e pódio | `examples/ranking-service.js` |
 | Tickets de suporte e orçamento | `examples/ticket-service.js` |
 | Mensagens automáticas, atualizações e tarefas recorrentes | `examples/automation-scheduler.js` |
