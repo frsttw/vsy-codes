@@ -8,6 +8,8 @@ Os exemplos são versões independentes das áreas funcionais do aplicativo. A c
 | Loja premium, cargos e pedidos personalizados | `examples/premium-shop-service.js` |
 | Jogo Crash, multiplicadores e cashout | `examples/crash-game.js` |
 | Persistência de economia e migração de dados | `examples/economy-repository.js` |
+| Espelho local de configurações de runtime | `examples/runtime-mirror.js` |
+| Buffer e publicação de logs de atualização | `examples/update-log-buffer.js` |
 | XP, níveis, leaderboard e pódio | `examples/ranking-service.js` |
 | Tickets de suporte e orçamento | `examples/ticket-service.js` |
 | Mensagens automáticas, atualizações e tarefas recorrentes | `examples/automation-scheduler.js` |
