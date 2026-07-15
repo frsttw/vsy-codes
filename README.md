@@ -8,6 +8,8 @@ This repository is a showcase of the systems and features I build for community 
 
 ## Featured code
 
+- [Emoji import planner](examples/emoji-import-planner.js) — scans message content and image files, normalizes names, and avoids collisions.
+
 - [Economy system](examples/economy-service.js) — wallets, banks, daily rewards, transfers, and shop items.
 - [Premium shop](examples/premium-shop-service.js) — role catalog, transactional purchases, refunds, and custom-role orders.
 - [Crash game](examples/crash-game.js) — multiplier timing, cashout protection, and replay-safe game state.

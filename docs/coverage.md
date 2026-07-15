@@ -4,6 +4,7 @@ Os exemplos são versões independentes das áreas funcionais do aplicativo. A c
 
 | Área do aplicativo | Exemplo público |
 | --- | --- |
+| Importação de emojis e imagens com nomes seguros | `examples/emoji-import-planner.js` |
 | Economia e recompensas | `examples/economy-service.js` |
 | Loja premium, cargos e pedidos personalizados | `examples/premium-shop-service.js` |
 | Jogo Crash, multiplicadores e cashout | `examples/crash-game.js` |
