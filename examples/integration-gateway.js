@@ -1,13 +1,13 @@
 class IntegrationGateway {
-  constructor({ aiClient, musicClient, logger = console }) {
-    this.aiClient = aiClient;
+  constructor({ textClient, musicClient, logger = console }) {
+    this.textClient = textClient;
     this.musicClient = musicClient;
     this.logger = logger;
   }
 
-  async answerQuestion(question) {
-    if (!question?.trim()) throw new Error('A pergunta é obrigatória.');
-    return this.aiClient.complete({ prompt: question.trim() });
+  async processText(input) {
+    if (!input?.trim()) throw new Error('O texto é obrigatório.');
+    return this.textClient.complete({ content: input.trim() });
   }
 
   async searchTrack(query) {

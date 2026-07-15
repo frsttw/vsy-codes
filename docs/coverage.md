@@ -20,6 +20,6 @@ Os exemplos são versões independentes das áreas funcionais do aplicativo. A c
 | Rotação de mídia e tratamento de nomes de arquivo | `examples/media-library.js` |
 | Verificação de acesso | `examples/verification-service.js` |
 | Painéis, listas e paginação | `examples/panel-state.js` |
-| Limites de integração para IA e música | `examples/integration-gateway.js` |
+| Limites de integração para texto e música | `examples/integration-gateway.js` |
 
 Os adaptadores de integração recebem clientes já configurados pelo ambiente. Chaves, tokens, IDs, URLs privadas, dados de usuários e histórico de uso não fazem parte dos exemplos.
