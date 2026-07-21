@@ -16,6 +16,7 @@ Os exemplos são versões independentes das áreas funcionais do aplicativo. A c
 | Mensagens automáticas, atualizações e tarefas recorrentes | `examples/automation-scheduler.js` |
 | Filtro de palavras, limites de ações e proteção | `examples/moderation-service.js` |
 | Canais temporários e nomes personalizados | `examples/voice-channel-service.js` |
+| Status persistentes para canais de voz | `examples/voice-status-store.js` |
 | Configurações por comunidade | `examples/config-store.js` |
 | Rotação de mídia e tratamento de nomes de arquivo | `examples/media-library.js` |
 | Verificação de acesso | `examples/verification-service.js` |

@@ -21,6 +21,7 @@ This repository is a showcase of the systems and features I build for community 
 - [Automation scheduler](examples/automation-scheduler.js) — recurring jobs with isolated failures.
 - [Moderation tools](examples/moderation-service.js) — word filters and action-rate protection.
 - [Voice channels](examples/voice-channel-service.js) — temporary channels and owner controls.
+- [Voice status store](examples/voice-status-store.js) — persistent channel statuses with validation and isolated configuration.
 - [Media, verification, panels, and integrations](docs/coverage.md) — full feature map for the portfolio.
 
 ---

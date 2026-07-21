@@ -1,0 +1,20 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { VoiceStatusStore, normalizeStatus } = require('../examples/voice-status-store');
+
+test('valida e normaliza o texto do status', () => {
+  assert.equal(normalizeStatus('  Música ao vivo  '), 'Música ao vivo');
+  assert.equal(normalizeStatus(' '), null);
+  assert.equal(normalizeStatus('x'.repeat(501)), null);
+});
+
+test('mantém status separados por escopo e canal', () => {
+  const store = new VoiceStatusStore();
+  store.set('community-a', 'room-1', 'Online');
+  store.set('community-b', 'room-1', 'Ao vivo');
+
+  assert.equal(store.get('community-a', 'room-1').status, 'Online');
+  assert.equal(store.list().length, 2);
+  assert.equal(store.remove('community-a', 'room-1'), true);
+  assert.equal(store.get('community-a', 'room-1'), null);
+});
