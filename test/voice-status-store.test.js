@@ -18,3 +18,13 @@ test('mantém status separados por escopo e canal', () => {
   assert.equal(store.remove('community-a', 'room-1'), true);
   assert.equal(store.get('community-a', 'room-1'), null);
 });
+
+test('normaliza identificadores em todas as operações', () => {
+  const store = new VoiceStatusStore();
+  store.set('  community-a  ', '  room-1  ', 'Online');
+
+  assert.equal(store.get('community-a', 'room-1').status, 'Online');
+  assert.equal(store.remove(' community-a ', ' room-1 '), true);
+  assert.equal(store.get('community-a', 'room-1'), null);
+  assert.equal(store.remove(' ', 'room-1'), false);
+});

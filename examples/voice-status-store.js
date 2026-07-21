@@ -6,31 +6,45 @@ function normalizeStatus(value) {
   return status;
 }
 
+function createStatusKey(scope, channel) {
+  const normalizedScope = String(scope ?? '').trim();
+  const normalizedChannel = String(channel ?? '').trim();
+  if (!normalizedScope || !normalizedChannel) return null;
+
+  return `${normalizedScope}:${normalizedChannel}`;
+}
+
 class VoiceStatusStore {
   constructor() {
     this.statuses = new Map();
   }
 
   set(scope, channel, status) {
-    if (!scope?.trim() || !channel?.trim()) {
+    const normalizedScope = String(scope ?? '').trim();
+    const normalizedChannel = String(channel ?? '').trim();
+    const key = createStatusKey(normalizedScope, normalizedChannel);
+    if (!key) {
       throw new Error('O escopo e o canal são obrigatórios.');
     }
 
     const normalized = normalizeStatus(status);
     if (!normalized) throw new Error('O status precisa ter entre 1 e 500 caracteres.');
 
-    const key = `${scope.trim()}:${channel.trim()}`;
-    this.statuses.set(key, { scope: scope.trim(), channel: channel.trim(), status: normalized });
+    this.statuses.set(key, { scope: normalizedScope, channel: normalizedChannel, status: normalized });
     return this.get(scope, channel);
   }
 
   get(scope, channel) {
-    const entry = this.statuses.get(`${scope}:${channel}`);
+    const key = createStatusKey(scope, channel);
+    if (!key) return null;
+
+    const entry = this.statuses.get(key);
     return entry ? { ...entry } : null;
   }
 
   remove(scope, channel) {
-    return this.statuses.delete(`${scope}:${channel}`);
+    const key = createStatusKey(scope, channel);
+    return key ? this.statuses.delete(key) : false;
   }
 
   list() {
@@ -38,4 +52,4 @@ class VoiceStatusStore {
   }
 }
 
-module.exports = { MAX_STATUS_LENGTH, VoiceStatusStore, normalizeStatus };
+module.exports = { MAX_STATUS_LENGTH, VoiceStatusStore, createStatusKey, normalizeStatus };

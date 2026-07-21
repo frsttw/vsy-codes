@@ -23,7 +23,3 @@ This repository is a showcase of the systems and features I build for community 
 - [Voice channels](examples/voice-channel-service.js) — temporary channels and owner controls.
 - [Voice status store](examples/voice-status-store.js) — persistent channel statuses with validation and isolated configuration.
 - [Media, verification, panels, and integrations](docs/coverage.md) — full feature map for the portfolio.
-
----
-
-[GitHub](https://github.com/frsttw) | [Website](https://frstt.dev) | [Discord](https://discord.gg/voidsynth) | [Email](mailto:joao141-2012@hotmail.com)
