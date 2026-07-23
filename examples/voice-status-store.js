@@ -11,7 +11,7 @@ function createStatusKey(scope, channel) {
   const normalizedChannel = String(channel ?? '').trim();
   if (!normalizedScope || !normalizedChannel) return null;
 
-  return `${normalizedScope}:${normalizedChannel}`;
+  return `${normalizedScope.length}:${normalizedScope}${normalizedChannel.length}:${normalizedChannel}`;
 }
 
 class VoiceStatusStore {

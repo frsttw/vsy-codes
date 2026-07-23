@@ -8,6 +8,16 @@ test('valida e normaliza o texto do status', () => {
   assert.equal(normalizeStatus('x'.repeat(501)), null);
 });
 
+test('mantém chaves distintas quando identificadores contêm separadores', () => {
+  const store = new VoiceStatusStore();
+  store.set('community:main', 'room', 'Principal');
+  store.set('community', 'main:room', 'Alternativo');
+
+  assert.equal(store.get('community:main', 'room').status, 'Principal');
+  assert.equal(store.get('community', 'main:room').status, 'Alternativo');
+  assert.equal(store.list().length, 2);
+});
+
 test('mantém status separados por escopo e canal', () => {
   const store = new VoiceStatusStore();
   store.set('community-a', 'room-1', 'Online');
