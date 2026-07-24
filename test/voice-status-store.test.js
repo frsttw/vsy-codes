@@ -38,3 +38,10 @@ test('normaliza identificadores em todas as operações', () => {
   assert.equal(store.get('community-a', 'room-1'), null);
   assert.equal(store.remove(' ', 'room-1'), false);
 });
+
+test('recusa identificadores vazios ou acima do limite', () => {
+  const store = new VoiceStatusStore();
+
+  assert.throws(() => store.set('', 'room-1', 'Online'), /escopo e o canal/);
+  assert.throws(() => store.set('community-a', 'x'.repeat(129), 'Online'), /escopo e o canal/);
+});

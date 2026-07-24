@@ -1,4 +1,5 @@
 const MAX_STATUS_LENGTH = 500;
+const MAX_KEY_LENGTH = 128;
 
 function normalizeStatus(value) {
   const status = String(value ?? '').trim();
@@ -9,7 +10,12 @@ function normalizeStatus(value) {
 function createStatusKey(scope, channel) {
   const normalizedScope = String(scope ?? '').trim();
   const normalizedChannel = String(channel ?? '').trim();
-  if (!normalizedScope || !normalizedChannel) return null;
+  if (
+    !normalizedScope
+    || !normalizedChannel
+    || normalizedScope.length > MAX_KEY_LENGTH
+    || normalizedChannel.length > MAX_KEY_LENGTH
+  ) return null;
 
   return `${normalizedScope.length}:${normalizedScope}${normalizedChannel.length}:${normalizedChannel}`;
 }
@@ -52,4 +58,10 @@ class VoiceStatusStore {
   }
 }
 
-module.exports = { MAX_STATUS_LENGTH, VoiceStatusStore, createStatusKey, normalizeStatus };
+module.exports = {
+  MAX_KEY_LENGTH,
+  MAX_STATUS_LENGTH,
+  VoiceStatusStore,
+  createStatusKey,
+  normalizeStatus
+};
