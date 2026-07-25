@@ -53,6 +53,19 @@ class VoiceStatusStore {
     return key ? this.statuses.delete(key) : false;
   }
 
+  clearScope(scope) {
+    const normalizedScope = String(scope ?? '').trim();
+    if (!normalizedScope || normalizedScope.length > MAX_KEY_LENGTH) return 0;
+
+    let removed = 0;
+    for (const [key, entry] of this.statuses) {
+      if (entry.scope !== normalizedScope) continue;
+      this.statuses.delete(key);
+      removed += 1;
+    }
+    return removed;
+  }
+
   list() {
     return [...this.statuses.values()].map(entry => ({ ...entry }));
   }

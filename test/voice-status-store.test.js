@@ -45,3 +45,14 @@ test('recusa identificadores vazios ou acima do limite', () => {
   assert.throws(() => store.set('', 'room-1', 'Online'), /escopo e o canal/);
   assert.throws(() => store.set('community-a', 'x'.repeat(129), 'Online'), /escopo e o canal/);
 });
+
+test('limpa todos os status de um escopo removido', () => {
+  const store = new VoiceStatusStore();
+  store.set('community-a', 'room-1', 'Online');
+  store.set('community-a', 'room-2', 'Ao vivo');
+  store.set('community-b', 'room-1', 'Disponível');
+
+  assert.equal(store.clearScope(' community-a '), 2);
+  assert.deepEqual(store.list(), [{ scope: 'community-b', channel: 'room-1', status: 'Disponível' }]);
+  assert.equal(store.clearScope('community-a'), 0);
+});
