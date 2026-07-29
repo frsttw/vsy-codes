@@ -1,6 +1,7 @@
 class PanelState {
   constructor(items = []) {
-    this.items = [...items];
+    if (!Array.isArray(items)) throw new Error('Os itens do painel devem ser uma lista.');
+    this.items = structuredClone(items);
   }
 
   page(page = 1, perPage = 8) {
@@ -15,7 +16,7 @@ class PanelState {
     return {
       currentPage,
       totalPages,
-      items: this.items.slice(start, start + perPage),
+      items: structuredClone(this.items.slice(start, start + perPage)),
       hasPrevious: currentPage > 1,
       hasNext: currentPage < totalPages,
     };
