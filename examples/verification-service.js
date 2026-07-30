@@ -1,33 +1,49 @@
+const { randomBytes } = require('node:crypto');
+
+function normalizeUserId(userId) {
+  const value = String(userId ?? '').trim();
+  if (!value) throw new Error('O usuário é obrigatório.');
+  return value;
+}
+
 class VerificationService {
-  constructor() {
+  constructor({ challengeFactory = () => randomBytes(4).toString('hex').toUpperCase() } = {}) {
+    if (typeof challengeFactory !== 'function') throw new Error('A fábrica de desafios é obrigatória.');
     this.pending = new Map();
     this.verified = new Set();
+    this.challengeFactory = challengeFactory;
   }
 
   begin(userId, now = Date.now()) {
-    if (!userId) throw new Error('O usuário é obrigatório.');
-    if (this.verified.has(userId)) return { status: 'already-verified' };
+    const id = normalizeUserId(userId);
+    if (this.verified.has(id)) return { status: 'already-verified' };
 
-    const challenge = Math.random().toString(36).slice(2, 8).toUpperCase();
-    this.pending.set(userId, { challenge, createdAt: now });
+    const challenge = String(this.challengeFactory()).trim().toUpperCase();
+    if (!challenge) throw new Error('O desafio gerado é inválido.');
+    this.pending.set(id, { challenge, createdAt: now });
     return { status: 'pending', challenge };
   }
 
   confirm(userId, answer, now = Date.now(), expiresInMs = 300_000) {
-    const pending = this.pending.get(userId);
+    const id = normalizeUserId(userId);
+    if (!Number.isFinite(expiresInMs) || expiresInMs <= 0) {
+      throw new Error('O prazo de confirmação deve ser positivo.');
+    }
+
+    const pending = this.pending.get(id);
     if (!pending || now - pending.createdAt > expiresInMs) {
-      this.pending.delete(userId);
+      this.pending.delete(id);
       return { verified: false, reason: 'expired' };
     }
 
-    if (pending.challenge !== answer?.trim().toUpperCase()) {
+    if (pending.challenge !== String(answer ?? '').trim().toUpperCase()) {
       return { verified: false, reason: 'invalid-challenge' };
     }
 
-    this.pending.delete(userId);
-    this.verified.add(userId);
+    this.pending.delete(id);
+    this.verified.add(id);
     return { verified: true };
   }
 }
 
-module.exports = { VerificationService };
+module.exports = { VerificationService, normalizeUserId };
