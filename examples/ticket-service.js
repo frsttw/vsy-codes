@@ -1,8 +1,10 @@
 class TicketService {
-  constructor() {
+  constructor({ now = () => new Date().toISOString() } = {}) {
+    if (typeof now !== 'function') throw new Error('O relógio precisa ser uma função.');
     this.tickets = new Map();
     this.openTicketByRequester = new Map();
     this.nextId = 1;
+    this.now = now;
   }
 
   open({ requesterId, subject, category }) {
@@ -22,7 +24,7 @@ class TicketService {
       category: category.trim(),
       status: 'open',
       assignedTo: null,
-      openedAt: new Date().toISOString(),
+      openedAt: this.now(),
       closedAt: null,
       closureReason: null,
     };
@@ -51,7 +53,7 @@ class TicketService {
     }
 
     ticket.status = 'closed';
-    ticket.closedAt = new Date().toISOString();
+    ticket.closedAt = this.now();
     ticket.closedBy = closedBy;
     ticket.closureReason = reason.trim();
     this.openTicketByRequester.delete(ticket.requesterId);
