@@ -39,6 +39,10 @@ class AutomationScheduler {
     job.enabled = Boolean(enabled);
   }
 
+  unregister(id) {
+    return this.jobs.delete(id);
+  }
+
   getJob(id) {
     const job = this.jobs.get(id);
     if (!job) throw new Error('Trabalho não encontrado.');
