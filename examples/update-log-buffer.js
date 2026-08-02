@@ -21,7 +21,7 @@ class UpdateLogBuffer {
 
     const batch = this.snapshot();
     await publish(batch);
-    this.entries = [];
+    this.entries.splice(0, batch.length);
     return { published: true, count: batch.length };
   }
 }

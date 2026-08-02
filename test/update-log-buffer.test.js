@@ -13,3 +13,23 @@ test('mantém o buffer até uma publicação bem-sucedida', async () => {
   assert.deepEqual(result, { published: true, count: 1 });
   assert.equal(buffer.snapshot().length, 0);
 });
+
+test('preserva registros incluídos durante a publicação', async () => {
+  const buffer = new UpdateLogBuffer();
+  buffer.append({ title: 'Catálogo', description: 'Nova categoria disponível.' });
+
+  await buffer.flush(async () => {
+    buffer.append({ title: 'Ranking', description: 'Critério de desempate revisado.' });
+  });
+
+  const [entry] = buffer.snapshot();
+
+  assert.deepEqual({
+    title: entry.title,
+    description: entry.description,
+  }, {
+    title: 'Ranking',
+    description: 'Critério de desempate revisado.',
+  });
+  assert.ok(Number.isFinite(Date.parse(entry.createdAt)));
+});
