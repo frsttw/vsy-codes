@@ -9,3 +9,11 @@ test('identifica termo bloqueado e excesso de ações', () => {
   moderation.registerSensitiveAction('user', 2);
   assert.equal(moderation.registerSensitiveAction('user', 3).allowed, false);
 });
+
+test('ignora termos vazios e normaliza a lista de bloqueio', () => {
+  const moderation = new ModerationService({ blockedTerms: ['', '  SPAM  ', 'spam', null] });
+
+  assert.deepEqual(moderation.blockedTerms, ['spam']);
+  assert.equal(moderation.inspectMessage('Mensagem normal').allowed, true);
+  assert.equal(moderation.inspectMessage('Contém spam').allowed, false);
+});

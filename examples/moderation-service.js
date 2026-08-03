@@ -1,6 +1,11 @@
 class ModerationService {
   constructor({ blockedTerms = [], maxActionsPerWindow = 5, windowMs = 60_000 } = {}) {
-    this.blockedTerms = blockedTerms.map((term) => term.toLocaleLowerCase());
+    this.blockedTerms = [...new Set(
+      blockedTerms
+        .filter((term) => typeof term === 'string')
+        .map((term) => term.normalize('NFKC').trim().toLocaleLowerCase())
+        .filter(Boolean),
+    )];
     this.maxActionsPerWindow = maxActionsPerWindow;
     this.windowMs = windowMs;
     this.actions = new Map();
