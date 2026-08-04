@@ -87,11 +87,16 @@ class PremiumShopService {
     for (const transaction of this.transactions.values()) {
       if (transaction.status !== 'processing') continue;
 
+      const item = this.catalog.get(transaction.itemId);
       const revoke = transaction.type === 'role'
-        ? () => revokeRole?.(transaction.itemId)
-        : () => deleteRole?.(transaction.roleId);
+        ? item?.roleKey && typeof revokeRole === 'function'
+          ? () => revokeRole(item.roleKey)
+          : null
+        : transaction.roleId && typeof deleteRole === 'function'
+          ? () => deleteRole(transaction.roleId)
+          : null;
 
-      await this.rollback(transaction, { revoke: transaction.roleId || transaction.type === 'role' ? revoke : null });
+      await this.rollback(transaction, { revoke });
       recoveries.push(transaction.id);
     }
 
