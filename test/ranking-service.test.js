@@ -17,3 +17,11 @@ test('respeita o cooldown de XP', () => {
   assert.equal(ranking.awardExperience('ana', 10, 10_000).awarded, true);
   assert.equal(ranking.awardExperience('ana', 10, 10_500).awarded, false);
 });
+
+test('normaliza faixas de XP sem duplicar níveis', () => {
+  const ranking = new RankingService({ thresholds: [30, 10, 30], cooldownMs: 0 });
+
+  assert.deepEqual(ranking.thresholds, [10, 30]);
+  assert.equal(ranking.awardExperience('ana', 35, 1).level, 2);
+  assert.throws(() => new RankingService({ thresholds: [0] }), /faixa de XP/);
+});

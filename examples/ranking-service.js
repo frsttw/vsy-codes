@@ -1,6 +1,7 @@
 class RankingService {
   constructor({ thresholds = [100, 300, 600, 1_000], cooldownMs = 60_000 } = {}) {
-    this.thresholds = [...thresholds].sort((first, second) => first - second);
+    thresholds.forEach((threshold) => this.assertPositiveInteger(threshold, 'Cada faixa de XP'));
+    this.thresholds = [...new Set(thresholds)].sort((first, second) => first - second);
     this.cooldownMs = cooldownMs;
     this.entries = new Map();
   }
