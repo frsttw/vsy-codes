@@ -68,7 +68,9 @@ class EconomyService {
 
   claimDaily(userId, now = Date.now()) {
     const account = this.getAccount(userId);
-    const availableAt = (account.lastDailyAt ?? 0) + this.dailyCooldownMs;
+    const availableAt = account.lastDailyAt === null
+      ? now
+      : account.lastDailyAt + this.dailyCooldownMs;
 
     if (now < availableAt) {
       return { claimed: false, availableAt };

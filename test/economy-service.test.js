@@ -22,3 +22,10 @@ test('entrega a recompensa diária uma vez por período', () => {
   assert.equal(economy.claimDaily('ana', 10_500).claimed, false);
   assert.equal(economy.snapshot('ana').wallet, 50);
 });
+
+test('libera a primeira recompensa diária no início do relógio', () => {
+  const economy = new EconomyService({ dailyReward: 50, dailyCooldownMs: 1_000 });
+
+  assert.equal(economy.claimDaily('ana', 0).claimed, true);
+  assert.equal(economy.claimDaily('ana', 500).claimed, false);
+});
