@@ -26,3 +26,16 @@ test('registra datas de abertura e encerramento pelo relógio configurado', () =
   assert.equal(closed.closedAt, '2026-01-01T10:10:00.000Z');
   assert.throws(() => new TicketService({ now: 'invalid' }), /relógio/);
 });
+
+test('consulta tickets encerrados sem expor o registro interno', () => {
+  const tickets = new TicketService();
+  const ticket = tickets.open({ requesterId: 'ana', subject: 'Dúvida', category: 'Suporte' });
+
+  tickets.close(ticket.id, { closedBy: 'agent-1', reason: 'Resolvido' });
+  const result = tickets.get(ticket.id);
+  result.status = 'open';
+
+  assert.equal(result.status, 'open');
+  assert.equal(tickets.get(ticket.id).status, 'closed');
+  assert.throws(() => tickets.get('T-9999'), /Ticket não encontrado/);
+});

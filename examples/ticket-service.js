@@ -66,6 +66,16 @@ class TicketService {
       .map((ticket) => ({ ...ticket }));
   }
 
+  get(ticketId) {
+    const ticket = this.tickets.get(ticketId);
+
+    if (!ticket) {
+      throw new Error('Ticket não encontrado.');
+    }
+
+    return { ...ticket };
+  }
+
   getOpenTicket(ticketId) {
     const ticket = this.tickets.get(ticketId);
 
