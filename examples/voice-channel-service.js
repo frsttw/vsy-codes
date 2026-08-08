@@ -21,6 +21,10 @@ class VoiceChannelService {
 
   join(channelId, memberId) {
     const channel = this.getChannel(channelId);
+
+    if (!memberId) throw new Error('O membro é obrigatório.');
+    if (channel.members.has(memberId)) return this.serialize(channel);
+
     if (channel.userLimit && channel.members.size >= channel.userLimit) {
       throw new Error('O canal atingiu o limite de usuários.');
     }
