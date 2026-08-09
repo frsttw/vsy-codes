@@ -20,3 +20,11 @@ test('valida coleção, escopo e identificador de mídia', () => {
   assert.throws(() => library.add('gallery', { id: '', url: 'https://example.test/one.png' }), /id do item/);
   assert.throws(() => library.next('gallery', ''), /escopo/);
 });
+
+test('gera um nome seguro quando o título não possui caracteres aproveitáveis', () => {
+  const library = new MediaLibrary();
+
+  assert.equal(library.sanitizeFileName('***'), 'arquivo');
+  assert.equal(library.sanitizeFileName('..'), 'arquivo');
+  assert.equal(library.sanitizeFileName('Café pronto.png'), 'cafe-pronto.png');
+});
