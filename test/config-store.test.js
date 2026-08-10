@@ -21,3 +21,13 @@ test('normaliza e valida identificadores de escopo', () => {
   assert.throws(() => store.get(''), /identificador do escopo/);
   assert.throws(() => store.remove('x'.repeat(129)), /identificador do escopo/);
 });
+
+test('restaura um escopo para a configuração padrão sem compartilhar referências', () => {
+  const store = new ConfigStore({ enabled: true, nested: { level: 1 } });
+  store.update('community-a', { enabled: false });
+
+  const reset = store.reset('community-a');
+  reset.nested.level = 9;
+
+  assert.deepEqual(store.get('community-a'), { enabled: true, nested: { level: 1 } });
+});

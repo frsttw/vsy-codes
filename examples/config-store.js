@@ -35,6 +35,13 @@ class ConfigStore {
     return structuredClone(next);
   }
 
+  reset(scopeId) {
+    const key = normalizeScopeId(scopeId);
+    const value = structuredClone(this.defaultValue);
+    this.values.set(key, value);
+    return structuredClone(value);
+  }
+
   remove(scopeId) {
     return this.values.delete(normalizeScopeId(scopeId));
   }
