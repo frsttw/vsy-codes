@@ -30,7 +30,7 @@ test('gera nomes organizados sem colisões', () => {
       content: '<:rose:source-a>',
       attachments: [{ id: 'file-a', name: 'Black Rose.png', contentType: 'image/png' }]
     }],
-    existingNames: ['black_1'],
+    existingNames: [' Black_1 '],
     prefix: 'Black'
   });
 

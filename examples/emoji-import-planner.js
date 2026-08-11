@@ -116,7 +116,7 @@ function extractCandidates(messages) {
 }
 
 function planEmojiImport({ messages, existingNames = [], prefix = null }) {
-  const usedNames = new Set(existingNames.map(name => String(name).toLowerCase()));
+  const usedNames = new Set(existingNames.map(name => normalizeName(name)));
   const normalizedPrefix = normalizePrefix(prefix);
   let nextSequence = 1;
 
