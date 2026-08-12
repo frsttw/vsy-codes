@@ -8,7 +8,16 @@ class UpdateLogBuffer {
       throw new Error('Título e descrição são obrigatórios.');
     }
 
-    this.entries.push({ title: title.trim(), description: description.trim(), createdAt });
+    const timestamp = new Date(createdAt);
+    if (Number.isNaN(timestamp.getTime())) {
+      throw new Error('A data do registro é inválida.');
+    }
+
+    this.entries.push({
+      title: title.trim(),
+      description: description.trim(),
+      createdAt: timestamp.toISOString(),
+    });
   }
 
   snapshot() {

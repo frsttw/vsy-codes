@@ -33,3 +33,19 @@ test('preserva registros incluídos durante a publicação', async () => {
   });
   assert.ok(Number.isFinite(Date.parse(entry.createdAt)));
 });
+
+test('normaliza a data e recusa registros com data inválida', () => {
+  const buffer = new UpdateLogBuffer();
+
+  buffer.append({
+    title: 'Catálogo',
+    description: 'Nova categoria disponível.',
+    createdAt: '2026-01-01T10:00:00-03:00',
+  });
+
+  assert.equal(buffer.snapshot()[0].createdAt, '2026-01-01T13:00:00.000Z');
+  assert.throws(
+    () => buffer.append({ title: 'Catálogo', description: 'Nova categoria disponível.', createdAt: 'inválida' }),
+    /data do registro/
+  );
+});
