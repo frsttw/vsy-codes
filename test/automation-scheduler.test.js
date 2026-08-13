@@ -23,3 +23,12 @@ test('remove trabalhos sem manter execuções pendentes', async () => {
   assert.deepEqual(await scheduler.runDue(10_000), []);
   assert.equal(executions, 0);
 });
+
+test('exige um estado booleano ao ativar ou pausar trabalhos', () => {
+  const scheduler = new AutomationScheduler();
+  scheduler.register({ id: 'cleanup', intervalMs: 1_000, run: async () => {} });
+
+  scheduler.setEnabled('cleanup', false);
+  assert.equal(scheduler.getJob('cleanup').enabled, false);
+  assert.throws(() => scheduler.setEnabled('cleanup', 'false'), /estado do trabalho/);
+});

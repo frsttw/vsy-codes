@@ -35,8 +35,12 @@ class AutomationScheduler {
   }
 
   setEnabled(id, enabled) {
+    if (typeof enabled !== 'boolean') {
+      throw new Error('O estado do trabalho deve ser booleano.');
+    }
+
     const job = this.getJob(id);
-    job.enabled = Boolean(enabled);
+    job.enabled = enabled;
   }
 
   unregister(id) {
