@@ -32,3 +32,16 @@ test('exige um estado booleano ao ativar ou pausar trabalhos', () => {
   assert.equal(scheduler.getJob('cleanup').enabled, false);
   assert.throws(() => scheduler.setEnabled('cleanup', 'false'), /estado do trabalho/);
 });
+
+test('rejeita identificadores vazios ou fora do formato esperado', () => {
+  const scheduler = new AutomationScheduler();
+
+  assert.throws(
+    () => scheduler.register({ id: '   ', intervalMs: 1_000, run: async () => {} }),
+    /trabalho precisa/i,
+  );
+  assert.throws(
+    () => scheduler.register({ id: 42, intervalMs: 1_000, run: async () => {} }),
+    /trabalho precisa/i,
+  );
+});

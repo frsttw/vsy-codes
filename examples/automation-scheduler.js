@@ -4,7 +4,7 @@ class AutomationScheduler {
   }
 
   register({ id, intervalMs, run }) {
-    if (!id || !Number.isInteger(intervalMs) || intervalMs <= 0 || typeof run !== 'function') {
+    if (typeof id !== 'string' || !id.trim() || !Number.isInteger(intervalMs) || intervalMs <= 0 || typeof run !== 'function') {
       throw new Error('Um trabalho precisa de id, intervalo positivo e função de execução.');
     }
 
