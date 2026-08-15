@@ -8,11 +8,13 @@ class AutomationScheduler {
       throw new Error('Um trabalho precisa de id, intervalo positivo e função de execução.');
     }
 
-    if (this.jobs.has(id)) {
+    const normalizedId = id.trim();
+
+    if (this.jobs.has(normalizedId)) {
       throw new Error('Já existe um trabalho com este id.');
     }
 
-    this.jobs.set(id, { id, intervalMs, run, nextRunAt: 0, enabled: true });
+    this.jobs.set(normalizedId, { id: normalizedId, intervalMs, run, nextRunAt: 0, enabled: true });
   }
 
   async runDue(now = Date.now()) {

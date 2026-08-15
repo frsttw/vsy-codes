@@ -45,3 +45,15 @@ test('rejeita identificadores vazios ou fora do formato esperado', () => {
     /trabalho precisa/i,
   );
 });
+
+test('normaliza identificadores antes de armazenar trabalhos', () => {
+  const scheduler = new AutomationScheduler();
+
+  scheduler.register({ id: '  cleanup  ', intervalMs: 1_000, run: async () => {} });
+
+  assert.equal(scheduler.getJob('cleanup').id, 'cleanup');
+  assert.throws(
+    () => scheduler.register({ id: 'cleanup', intervalMs: 1_000, run: async () => {} }),
+    /já existe/i,
+  );
+});
