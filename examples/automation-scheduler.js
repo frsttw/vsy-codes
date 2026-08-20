@@ -46,14 +46,18 @@ class AutomationScheduler {
   }
 
   unregister(id) {
-    return this.jobs.delete(id);
+    return this.jobs.delete(normalizeJobId(id));
   }
 
   getJob(id) {
-    const job = this.jobs.get(id);
+    const job = this.jobs.get(normalizeJobId(id));
     if (!job) throw new Error('Trabalho não encontrado.');
     return job;
   }
+}
+
+function normalizeJobId(id) {
+  return typeof id === 'string' ? id.trim() : id;
 }
 
 module.exports = { AutomationScheduler };

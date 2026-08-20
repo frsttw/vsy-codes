@@ -57,3 +57,13 @@ test('normaliza identificadores antes de armazenar trabalhos', () => {
     /já existe/i,
   );
 });
+
+test('normaliza identificadores ao consultar e remover trabalhos', () => {
+  const scheduler = new AutomationScheduler();
+
+  scheduler.register({ id: 'cleanup', intervalMs: 1_000, run: async () => {} });
+
+  assert.equal(scheduler.getJob('  cleanup  ').id, 'cleanup');
+  assert.equal(scheduler.unregister('  cleanup  '), true);
+  assert.throws(() => scheduler.getJob('cleanup'), /não encontrado/i);
+});
