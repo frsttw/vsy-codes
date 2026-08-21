@@ -18,6 +18,10 @@ class AutomationScheduler {
   }
 
   async runDue(now = Date.now()) {
+    if (!Number.isFinite(now)) {
+      throw new Error('A referência de tempo precisa ser um número finito.');
+    }
+
     const results = [];
 
     for (const job of this.jobs.values()) {

@@ -12,6 +12,13 @@ test('executa apenas trabalhos vencidos', async () => {
   assert.equal(executions, 1);
 });
 
+test('rejeita referências de tempo inválidas', async () => {
+  const scheduler = new AutomationScheduler();
+
+  await assert.rejects(() => scheduler.runDue(Number.NaN), /tempo precisa ser um número finito/i);
+  await assert.rejects(() => scheduler.runDue(Number.POSITIVE_INFINITY), /tempo precisa ser um número finito/i);
+});
+
 test('remove trabalhos sem manter execuções pendentes', async () => {
   const scheduler = new AutomationScheduler();
   let executions = 0;
