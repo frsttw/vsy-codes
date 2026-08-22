@@ -33,7 +33,8 @@ class AutomationScheduler {
         results.push({ id: job.id, status: 'completed' });
       } catch (error) {
         job.nextRunAt = now + job.intervalMs;
-        results.push({ id: job.id, status: 'failed', error: error.message });
+        const message = error instanceof Error ? error.message : String(error);
+        results.push({ id: job.id, status: 'failed', error: message });
       }
     }
 

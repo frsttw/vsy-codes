@@ -19,6 +19,15 @@ test('rejeita referências de tempo inválidas', async () => {
   await assert.rejects(() => scheduler.runDue(Number.POSITIVE_INFINITY), /tempo precisa ser um número finito/i);
 });
 
+test('registra uma mensagem quando o trabalho falha com um valor simples', async () => {
+  const scheduler = new AutomationScheduler();
+  scheduler.register({ id: 'cleanup', intervalMs: 1_000, run: async () => { throw 'indisponível'; } });
+
+  assert.deepEqual(await scheduler.runDue(10_000), [
+    { id: 'cleanup', status: 'failed', error: 'indisponível' },
+  ]);
+});
+
 test('remove trabalhos sem manter execuções pendentes', async () => {
   const scheduler = new AutomationScheduler();
   let executions = 0;
