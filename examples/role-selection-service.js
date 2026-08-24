@@ -38,22 +38,28 @@ function planRoleSelection(currentRoleIds, group, selectedValues) {
 
   if (group.mode === GROUP_MODE.EXCLUSIVE) {
     const roleId = selected[0];
-    if (!roleId) return { add: [], remove: [] };
-    if (current.has(roleId)) return { add: [], remove: [roleId] };
+    if (!roleId) return { add: [], remove: [], alreadyOwned: [] };
+
+    const conflictingRoleIds = groupRoleIds.filter((id) => id !== roleId && current.has(id));
+    if (current.has(roleId)) {
+      return { add: [], remove: conflictingRoleIds, alreadyOwned: [roleId] };
+    }
 
     return {
       add: [roleId],
-      remove: groupRoleIds.filter((id) => id !== roleId && current.has(id)),
+      remove: conflictingRoleIds,
+      alreadyOwned: [],
     };
   }
 
   if ((selectedValues ?? []).includes(CLEAR_SELECTION)) {
-    return { add: [], remove: groupRoleIds.filter((id) => current.has(id)) };
+    return { add: [], remove: groupRoleIds.filter((id) => current.has(id)), alreadyOwned: [] };
   }
 
   return {
     add: selected.filter((id) => !current.has(id)),
     remove: selected.filter((id) => current.has(id)),
+    alreadyOwned: [],
   };
 }
 

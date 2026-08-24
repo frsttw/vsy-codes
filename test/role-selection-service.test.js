@@ -31,8 +31,23 @@ test('grupo exclusivo troca apenas cargos do próprio grupo', () => {
   assert.deepEqual(planRoleSelection(['minor', 'subscriber'], group, ['adult']), {
     add: ['adult'],
     remove: ['minor'],
+    alreadyOwned: [],
   });
-  assert.deepEqual(planRoleSelection(['adult'], group, ['adult']), { add: [], remove: ['adult'] });
+});
+
+test('grupo exclusivo preserva o cargo selecionado e remove conflitos', () => {
+  const group = createRoleGroup({ id: 'age', name: 'Faixa etária', mode: GROUP_MODE.EXCLUSIVE, roles });
+
+  assert.deepEqual(planRoleSelection(['adult'], group, ['adult']), {
+    add: [],
+    remove: [],
+    alreadyOwned: ['adult'],
+  });
+  assert.deepEqual(planRoleSelection(['adult', 'minor'], group, ['adult']), {
+    add: [],
+    remove: ['minor'],
+    alreadyOwned: ['adult'],
+  });
 });
 
 test('grupo múltiplo alterna escolhas e permite limpar o grupo', () => {
@@ -41,10 +56,12 @@ test('grupo múltiplo alterna escolhas e permite limpar o grupo', () => {
   assert.deepEqual(planRoleSelection(['adult'], group, ['adult', 'minor']), {
     add: ['minor'],
     remove: ['adult'],
+    alreadyOwned: [],
   });
   assert.deepEqual(planRoleSelection(['adult', 'minor'], group, [CLEAR_SELECTION]), {
     add: [],
     remove: ['adult', 'minor'],
+    alreadyOwned: [],
   });
 });
 
