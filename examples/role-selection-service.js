@@ -32,6 +32,13 @@ function createRoleGroup({ id, name, mode, roles }) {
 }
 
 function planRoleSelection(currentRoleIds, group, selectedValues) {
+  if (!group || !Object.values(GROUP_MODE).includes(group.mode) || !Array.isArray(group.roles)) {
+    throw new Error('O grupo informado é inválido.');
+  }
+  if (!Array.isArray(currentRoleIds) || !Array.isArray(selectedValues)) {
+    throw new Error('Os cargos atuais e selecionados precisam ser listas.');
+  }
+
   const current = new Set(currentRoleIds ?? []);
   const groupRoleIds = group.roles.map((role) => role.id);
   const selected = [...new Set(selectedValues ?? [])].filter((value) => groupRoleIds.includes(value));

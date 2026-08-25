@@ -75,3 +75,14 @@ test('rejeita grupos incompletos ou com modo desconhecido', () => {
     /modo do grupo/i,
   );
 });
+
+test('rejeita dados malformados ao planejar uma seleção', () => {
+  const group = createRoleGroup({ id: 'age', name: 'Faixa etária', mode: GROUP_MODE.EXCLUSIVE, roles });
+
+  assert.throws(
+    () => planRoleSelection([], { ...group, mode: 'other' }, []),
+    /grupo informado/i,
+  );
+  assert.throws(() => planRoleSelection('adult', group, ['adult']), /precisam ser listas/i);
+  assert.throws(() => planRoleSelection([], group, 'adult'), /precisam ser listas/i);
+});
