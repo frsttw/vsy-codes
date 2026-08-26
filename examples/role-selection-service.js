@@ -6,6 +6,10 @@ const GROUP_MODE = Object.freeze({
 const CLEAR_SELECTION = '__clear__';
 const MAX_ROLES_PER_GROUP = 24;
 
+function normalizeIds(values) {
+  return values.map((value) => String(value ?? '').trim()).filter(Boolean);
+}
+
 function createRoleGroup({ id, name, mode, roles }) {
   const normalizedId = String(id ?? '').trim();
   const normalizedName = String(name ?? '').trim().replace(/\s+/g, ' ');
@@ -39,9 +43,10 @@ function planRoleSelection(currentRoleIds, group, selectedValues) {
     throw new Error('Os cargos atuais e selecionados precisam ser listas.');
   }
 
-  const current = new Set(currentRoleIds ?? []);
-  const groupRoleIds = group.roles.map((role) => role.id);
-  const selected = [...new Set(selectedValues ?? [])].filter((value) => groupRoleIds.includes(value));
+  const current = new Set(normalizeIds(currentRoleIds));
+  const groupRoleIds = [...new Set(normalizeIds(group.roles.map((role) => role?.id)))];
+  const normalizedSelection = normalizeIds(selectedValues);
+  const selected = [...new Set(normalizedSelection)].filter((value) => groupRoleIds.includes(value));
 
   if (group.mode === GROUP_MODE.EXCLUSIVE) {
     const roleId = selected[0];
@@ -59,7 +64,7 @@ function planRoleSelection(currentRoleIds, group, selectedValues) {
     };
   }
 
-  if ((selectedValues ?? []).includes(CLEAR_SELECTION)) {
+  if (normalizedSelection.includes(CLEAR_SELECTION)) {
     return { add: [], remove: groupRoleIds.filter((id) => current.has(id)), alreadyOwned: [] };
   }
 

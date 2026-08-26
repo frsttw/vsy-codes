@@ -86,3 +86,17 @@ test('rejeita dados malformados ao planejar uma seleção', () => {
   assert.throws(() => planRoleSelection('adult', group, ['adult']), /precisam ser listas/i);
   assert.throws(() => planRoleSelection([], group, 'adult'), /precisam ser listas/i);
 });
+
+test('normaliza identificadores ao planejar alterações', () => {
+  const numericRoles = [
+    { id: 10, name: 'Fotografia' },
+    { id: 20, name: 'Música' },
+  ];
+  const group = createRoleGroup({ id: 'topics', name: 'Interesses', mode: GROUP_MODE.MULTIPLE, roles: numericRoles });
+
+  assert.deepEqual(planRoleSelection([10], group, [' 10 ', 20, 20]), {
+    add: ['20'],
+    remove: ['10'],
+    alreadyOwned: [],
+  });
+});
