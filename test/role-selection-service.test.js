@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const {
   CLEAR_SELECTION,
   GROUP_MODE,
+  createRolePanel,
   createRoleGroup,
   planRoleSelection,
 } = require('../examples/role-selection-service');
@@ -74,6 +75,18 @@ test('rejeita grupos incompletos ou com modo desconhecido', () => {
     () => createRoleGroup({ id: 'age', name: 'Faixa etária', mode: 'other', roles }),
     /modo do grupo/i,
   );
+});
+
+test('valida limite e identificadores dos grupos do painel', () => {
+  const group = createRoleGroup({ id: 'age', name: 'Faixa etária', mode: GROUP_MODE.EXCLUSIVE, roles });
+
+  assert.deepEqual(createRolePanel({ description: 'Escolha uma opção.', groups: [group] }).groups, [group]);
+  assert.throws(
+    () => createRolePanel({ groups: Array.from({ length: 6 }, (_, index) => ({ ...group, id: `group-${index}` })) }),
+    /entre 1 e 5 grupos/i,
+  );
+  assert.throws(() => createRolePanel({ groups: [group, group] }), /identificadores únicos/i);
+  assert.throws(() => createRolePanel({ description: 'x'.repeat(1_001), groups: [group] }), /1\.000 caracteres/i);
 });
 
 test('rejeita dados malformados ao planejar uma seleção', () => {

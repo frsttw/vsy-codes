@@ -4,6 +4,7 @@ const GROUP_MODE = Object.freeze({
 });
 
 const CLEAR_SELECTION = '__clear__';
+const MAX_GROUPS = 5;
 const MAX_ROLES_PER_GROUP = 24;
 
 function normalizeIds(values) {
@@ -33,6 +34,21 @@ function createRoleGroup({ id, name, mode, roles }) {
   }
 
   return { id: normalizedId, name: normalizedName, mode, roles: [...uniqueRoles.values()] };
+}
+
+function createRolePanel({ description, groups }) {
+  const normalizedDescription = String(description ?? '').trim();
+  if (!Array.isArray(groups) || groups.length < 1 || groups.length > MAX_GROUPS) {
+    throw new Error(`O painel precisa ter entre 1 e ${MAX_GROUPS} grupos.`);
+  }
+  if (new Set(groups.map((group) => group?.id)).size !== groups.length) {
+    throw new Error('Os grupos do painel precisam ter identificadores únicos.');
+  }
+  if (normalizedDescription.length > 1_000) {
+    throw new Error('A descrição do painel deve ter até 1.000 caracteres.');
+  }
+
+  return { description: normalizedDescription, groups: groups.map((group) => ({ ...group, roles: [...group.roles] })) };
 }
 
 function planRoleSelection(currentRoleIds, group, selectedValues) {
@@ -78,7 +94,9 @@ function planRoleSelection(currentRoleIds, group, selectedValues) {
 module.exports = {
   CLEAR_SELECTION,
   GROUP_MODE,
+  MAX_GROUPS,
   MAX_ROLES_PER_GROUP,
   createRoleGroup,
+  createRolePanel,
   planRoleSelection,
 };
