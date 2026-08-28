@@ -22,8 +22,12 @@ function createRoleGroup({ id, name, mode, roles }) {
     throw new Error('O modo do grupo é inválido.');
   }
 
+  if (!Array.isArray(roles)) {
+    throw new Error('Os cargos do grupo precisam ser uma lista.');
+  }
+
   const uniqueRoles = new Map();
-  for (const role of roles ?? []) {
+  for (const role of roles) {
     const roleId = String(role?.id ?? '').trim();
     const roleName = String(role?.name ?? '').trim();
     if (roleId && roleName) uniqueRoles.set(roleId, { id: roleId, name: roleName });

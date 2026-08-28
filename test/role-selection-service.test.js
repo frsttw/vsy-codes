@@ -75,6 +75,10 @@ test('rejeita grupos incompletos ou com modo desconhecido', () => {
     () => createRoleGroup({ id: 'age', name: 'Faixa etária', mode: 'other', roles }),
     /modo do grupo/i,
   );
+  assert.throws(
+    () => createRoleGroup({ id: 'age', name: 'Faixa etária', mode: GROUP_MODE.EXCLUSIVE, roles: 'adult' }),
+    /cargos do grupo/i,
+  );
 });
 
 test('valida limite e identificadores dos grupos do painel', () => {
