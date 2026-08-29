@@ -18,6 +18,7 @@ This repository is a showcase of the systems and features I build for community 
 - [Update log buffer](examples/update-log-buffer.js) — durable change batches that clear only after publishing.
 - [Ranking system](examples/ranking-service.js) — XP cooldowns, levels, paginated leaderboards, and podiums.
 - [Role selection](examples/role-selection-service.js) — validated exclusive and multiple-choice groups with isolated role changes.
+- [Bot status](examples/bot-status.js) — normalized public activity status with empty-value validation.
 - [Ticket system](examples/ticket-service.js) — opening, assigning, and closing support requests.
 - [Automation scheduler](examples/automation-scheduler.js) — recurring jobs with isolated failures.
 - [Moderation tools](examples/moderation-service.js) — word filters and action-rate protection.
