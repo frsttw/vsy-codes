@@ -6,6 +6,7 @@ test('cria status público com atividade normalizada', () => {
   assert.deepEqual(createBotStatus('  /help  '), { type: 'custom', activity: '/help' });
 });
 
-test('rejeita atividade vazia', () => {
-  assert.throws(() => createBotStatus('   '), /não pode ser vazia/i);
+test('rejeita atividade vazia ou longa demais', () => {
+  assert.throws(() => createBotStatus('   '), /entre 1 e 128/i);
+  assert.throws(() => createBotStatus('x'.repeat(129)), /entre 1 e 128/i);
 });
