@@ -11,3 +11,7 @@ test('anexa um único banner local ao painel', () => {
 test('usa descrição padrão quando o painel está vazio', () => {
   assert.equal(buildVerificationMessage({}, 'banner.png').embeds[0].description, 'Escolha uma opção.');
 });
+
+test('rejeita caminho de banner vazio', () => {
+  assert.throws(() => buildVerificationMessage({}, '  '), /caminho do banner/i);
+});
