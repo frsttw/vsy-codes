@@ -15,3 +15,7 @@ test('usa descrição padrão quando o painel está vazio', () => {
 test('rejeita caminho de banner vazio', () => {
   assert.throws(() => buildVerificationMessage({}, '  '), /caminho do banner/i);
 });
+
+test('normaliza espaços no caminho do banner', () => {
+  assert.equal(buildVerificationMessage({}, '  assets/banner.png  ').attachments[0].path, 'assets/banner.png');
+});
