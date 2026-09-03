@@ -1,4 +1,7 @@
 function buildVerificationMessage(panel, bannerPath) {
+  if (!panel || typeof panel !== 'object' || Array.isArray(panel)) {
+    throw new Error('O painel de verificação precisa ser um objeto.');
+  }
   const description = String(panel?.description ?? '').trim();
   const normalizedBannerPath = String(bannerPath ?? '').trim();
   if (!normalizedBannerPath) throw new Error('O caminho do banner não pode ser vazio.');

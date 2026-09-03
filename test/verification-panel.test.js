@@ -19,3 +19,7 @@ test('rejeita caminho de banner vazio', () => {
 test('normaliza espaços no caminho do banner', () => {
   assert.equal(buildVerificationMessage({}, '  assets/banner.png  ').attachments[0].path, 'assets/banner.png');
 });
+
+test('rejeita painel que não seja objeto', () => {
+  assert.throws(() => buildVerificationMessage([], 'banner.png'), /painel de verificação/i);
+});
