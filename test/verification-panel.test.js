@@ -23,3 +23,10 @@ test('normaliza espaços no caminho do banner', () => {
 test('rejeita painel que não seja objeto', () => {
   assert.throws(() => buildVerificationMessage([], 'banner.png'), /painel de verificação/i);
 });
+
+test('rejeita descrição acima do limite', () => {
+  assert.throws(
+    () => buildVerificationMessage({ description: 'x'.repeat(4_097) }, 'banner.png'),
+    /4\.096 caracteres/i,
+  );
+});
