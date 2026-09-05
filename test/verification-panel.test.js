@@ -30,3 +30,10 @@ test('rejeita descrição acima do limite', () => {
     /4\.096 caracteres/i,
   );
 });
+
+test('rejeita endereço remoto como banner', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, 'https://example.test/banner.png'),
+    /caminho local/i,
+  );
+});
