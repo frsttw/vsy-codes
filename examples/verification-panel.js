@@ -8,7 +8,9 @@ function buildVerificationMessage(panel, bannerPath) {
   }
   const normalizedBannerPath = String(bannerPath ?? '').trim();
   if (!normalizedBannerPath) throw new Error('O caminho do banner não pode ser vazio.');
-  if (/^[a-z][a-z\d+.-]*:\/\//i.test(normalizedBannerPath)) {
+  const hasUriScheme = /^[a-z][a-z\d+.-]*:/i.test(normalizedBannerPath);
+  const isWindowsPath = /^[a-z]:[\\/]/i.test(normalizedBannerPath);
+  if (hasUriScheme && !isWindowsPath) {
     throw new Error('O banner precisa usar um caminho local.');
   }
   return {

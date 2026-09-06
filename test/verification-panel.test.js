@@ -36,4 +36,12 @@ test('rejeita endereço remoto como banner', () => {
     () => buildVerificationMessage({}, 'https://example.test/banner.png'),
     /caminho local/i,
   );
+  assert.throws(
+    () => buildVerificationMessage({}, 'data:image/png;base64,AAAA'),
+    /caminho local/i,
+  );
+});
+
+test('aceita caminho absoluto do Windows', () => {
+  assert.equal(buildVerificationMessage({}, 'C:\\assets\\banner.png').attachments[0].path, 'C:\\assets\\banner.png');
 });
