@@ -45,3 +45,10 @@ test('rejeita endereço remoto como banner', () => {
 test('aceita caminho absoluto do Windows', () => {
   assert.equal(buildVerificationMessage({}, 'C:\\assets\\banner.png').attachments[0].path, 'C:\\assets\\banner.png');
 });
+
+test('rejeita caracteres de controle no caminho', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, 'assets/banner\u0000.png'),
+    /caracteres inválidos/i,
+  );
+});
