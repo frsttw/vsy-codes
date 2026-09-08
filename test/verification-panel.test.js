@@ -52,3 +52,8 @@ test('rejeita caracteres de controle no caminho', () => {
     /caracteres inválidos/i,
   );
 });
+
+test('aceita somente arquivo PNG como banner', () => {
+  assert.equal(buildVerificationMessage({}, 'assets/BANNER.PNG').attachments[0].path, 'assets/BANNER.PNG');
+  assert.throws(() => buildVerificationMessage({}, 'assets/banner.jpg'), /arquivo PNG/i);
+});

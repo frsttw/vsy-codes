@@ -16,6 +16,9 @@ function buildVerificationMessage(panel, bannerPath) {
   if (hasUriScheme && !isWindowsPath) {
     throw new Error('O banner precisa usar um caminho local.');
   }
+  if (!/\.png$/i.test(normalizedBannerPath)) {
+    throw new Error('O banner precisa ser um arquivo PNG.');
+  }
   return {
     embeds: [{ title: 'Verificação', description: description || 'Escolha uma opção.' }],
     attachments: [{ path: normalizedBannerPath, name: 'verify-banner.png' }],
