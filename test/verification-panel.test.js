@@ -57,3 +57,10 @@ test('aceita somente arquivo PNG como banner', () => {
   assert.equal(buildVerificationMessage({}, 'assets/BANNER.PNG').attachments[0].path, 'assets/BANNER.PNG');
   assert.throws(() => buildVerificationMessage({}, 'assets/banner.jpg'), /arquivo PNG/i);
 });
+
+test('rejeita travessia de diretórios no caminho', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, 'assets/../private/banner.png'),
+    /diretório permitido/i,
+  );
+});
