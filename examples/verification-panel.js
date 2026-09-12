@@ -16,6 +16,9 @@ function buildVerificationMessage(panel, bannerPath) {
   if (hasUriScheme && !isWindowsPath) {
     throw new Error('O banner precisa usar um caminho local.');
   }
+  if (/^(?:\\\\|\/)/.test(normalizedBannerPath)) {
+    throw new Error('O banner não pode usar um caminho de rede.');
+  }
   if (normalizedBannerPath.split(/[\\/]+/).includes('..')) {
     throw new Error('O caminho do banner não pode sair do diretório permitido.');
   }

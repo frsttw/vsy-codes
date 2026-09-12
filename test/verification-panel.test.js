@@ -64,3 +64,10 @@ test('rejeita travessia de diretórios no caminho', () => {
     /diretório permitido/i,
   );
 });
+
+test('rejeita caminho de rede para o banner', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, '\\\\servidor\\compartilhamento\\banner.png'),
+    /caminho de rede/i,
+  );
+});
