@@ -71,3 +71,10 @@ test('rejeita caminho de rede para o banner', () => {
     /caminho de rede/i,
   );
 });
+
+test('rejeita caminho de banner acima do limite', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, `${'a'.repeat(257)}.png`),
+    /até 260 caracteres/i,
+  );
+});

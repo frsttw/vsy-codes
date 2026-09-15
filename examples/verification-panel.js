@@ -8,6 +8,9 @@ function buildVerificationMessage(panel, bannerPath) {
   }
   const normalizedBannerPath = String(bannerPath ?? '').trim();
   if (!normalizedBannerPath) throw new Error('O caminho do banner não pode ser vazio.');
+  if (normalizedBannerPath.length > 260) {
+    throw new Error('O caminho do banner deve ter até 260 caracteres.');
+  }
   if (/[\u0000-\u001f\u007f]/.test(normalizedBannerPath)) {
     throw new Error('O caminho do banner contém caracteres inválidos.');
   }
