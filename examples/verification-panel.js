@@ -25,6 +25,9 @@ function buildVerificationMessage(panel, bannerPath) {
   if (normalizedBannerPath.split(/[\\/]+/).includes('..')) {
     throw new Error('O caminho do banner não pode sair do diretório permitido.');
   }
+  if (/[*?]/.test(normalizedBannerPath)) {
+    throw new Error('O caminho do banner não pode usar curingas.');
+  }
   if (!/\.png$/i.test(normalizedBannerPath)) {
     throw new Error('O banner precisa ser um arquivo PNG.');
   }

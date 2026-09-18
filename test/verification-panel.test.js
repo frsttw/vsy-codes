@@ -65,6 +65,13 @@ test('rejeita travessia de diretórios no caminho', () => {
   );
 });
 
+test('rejeita curingas no caminho do banner', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, 'assets/*.png'),
+    /usar curingas/i,
+  );
+});
+
 test('rejeita caminho de rede para o banner', () => {
   assert.throws(
     () => buildVerificationMessage({}, '\\\\servidor\\compartilhamento\\banner.png'),
