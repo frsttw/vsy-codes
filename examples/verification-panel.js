@@ -22,8 +22,12 @@ function buildVerificationMessage(panel, bannerPath) {
   if (/^(?:\\\\|\/)/.test(normalizedBannerPath)) {
     throw new Error('O banner não pode usar um caminho de rede.');
   }
-  if (normalizedBannerPath.split(/[\\/]+/).includes('..')) {
+  const bannerSegments = normalizedBannerPath.split(/[\\/]+/);
+  if (bannerSegments.includes('..')) {
     throw new Error('O caminho do banner não pode sair do diretório permitido.');
+  }
+  if (bannerSegments.some((segment) => /[. ]$/.test(segment))) {
+    throw new Error('Os segmentos do caminho não podem terminar com ponto ou espaço.');
   }
   if (/[*?]/.test(normalizedBannerPath)) {
     throw new Error('O caminho do banner não pode usar curingas.');

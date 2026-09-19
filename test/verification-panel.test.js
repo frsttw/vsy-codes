@@ -72,6 +72,17 @@ test('rejeita curingas no caminho do banner', () => {
   );
 });
 
+test('rejeita segmento terminado com ponto ou espaço', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, 'assets/pasta./banner.png'),
+    /terminar com ponto ou espaço/i,
+  );
+  assert.throws(
+    () => buildVerificationMessage({}, 'assets/pasta /banner.png'),
+    /terminar com ponto ou espaço/i,
+  );
+});
+
 test('rejeita caminho de rede para o banner', () => {
   assert.throws(
     () => buildVerificationMessage({}, '\\\\servidor\\compartilhamento\\banner.png'),
