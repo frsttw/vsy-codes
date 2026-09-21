@@ -72,6 +72,17 @@ test('rejeita curingas no caminho do banner', () => {
   );
 });
 
+test('rejeita caracteres reservados no nome do banner', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, 'assets/banner|extra.png'),
+    /caracteres inválidos/i,
+  );
+  assert.throws(
+    () => buildVerificationMessage({}, 'C:\\assets\\banner<extra>.png'),
+    /caracteres inválidos/i,
+  );
+});
+
 test('rejeita segmento terminado com ponto ou espaço', () => {
   assert.throws(
     () => buildVerificationMessage({}, 'assets/pasta./banner.png'),

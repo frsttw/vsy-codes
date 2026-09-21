@@ -32,6 +32,10 @@ function buildVerificationMessage(panel, bannerPath) {
   if (/[*?]/.test(normalizedBannerPath)) {
     throw new Error('O caminho do banner não pode usar curingas.');
   }
+  const fileSegments = isWindowsPath ? bannerSegments.slice(1) : bannerSegments;
+  if (fileSegments.some((segment) => /[<>:"|]/.test(segment))) {
+    throw new Error('O caminho do banner contém caracteres inválidos.');
+  }
   if (!/\.png$/i.test(normalizedBannerPath)) {
     throw new Error('O banner precisa ser um arquivo PNG.');
   }
