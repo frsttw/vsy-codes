@@ -94,6 +94,13 @@ test('rejeita segmento terminado com ponto ou espaço', () => {
   );
 });
 
+test('rejeita dois-pontos em caminho relativo', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, 'assets/banner:extra.png'),
+    /caracteres inválidos/i,
+  );
+});
+
 test('rejeita caminho de rede para o banner', () => {
   assert.throws(
     () => buildVerificationMessage({}, '\\\\servidor\\compartilhamento\\banner.png'),
