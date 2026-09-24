@@ -101,6 +101,13 @@ test('rejeita dois-pontos em caminho relativo', () => {
   );
 });
 
+test('rejeita caminho relativo de unidade do Windows', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, 'C:banner.png'),
+    /caminho local/i,
+  );
+});
+
 test('rejeita caminho de rede para o banner', () => {
   assert.throws(
     () => buildVerificationMessage({}, '\\\\servidor\\compartilhamento\\banner.png'),
