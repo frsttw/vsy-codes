@@ -115,6 +115,13 @@ test('rejeita caminho de rede para o banner', () => {
   );
 });
 
+test('rejeita caminho de rede com barras normais', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, '/servidor/banner.png'),
+    /caminho de rede/i,
+  );
+});
+
 test('rejeita caminho de banner acima do limite', () => {
   assert.throws(
     () => buildVerificationMessage({}, `${'a'.repeat(257)}.png`),
