@@ -122,6 +122,13 @@ test('rejeita caminho de rede com barras normais', () => {
   );
 });
 
+test('rejeita caminho absoluto Unix', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, '/opt/assets/banner.png'),
+    /caminho de rede/i,
+  );
+});
+
 test('rejeita caminho de banner acima do limite', () => {
   assert.throws(
     () => buildVerificationMessage({}, `${'a'.repeat(257)}.png`),
