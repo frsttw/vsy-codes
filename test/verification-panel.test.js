@@ -49,6 +49,13 @@ test('rejeita URI de arquivo como banner', () => {
   );
 });
 
+test('rejeita URI file sem diferenciar maiúsculas', () => {
+  assert.throws(
+    () => buildVerificationMessage({}, 'FILE:///assets/banner.png'),
+    /caminho local/i,
+  );
+});
+
 test('aceita caminho absoluto do Windows', () => {
   assert.equal(buildVerificationMessage({}, 'C:\\assets\\banner.png').attachments[0].path, 'C:\\assets\\banner.png');
 });
