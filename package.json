@@ -2,7 +2,7 @@
   "name": "vsy-codes",
   "private": true,
   "version": "1.0.0",
-  "description": "Exemplos de lógica para portfólio.",
+  "description": "Portfolio examples of reusable Discord application logic.",
   "scripts": {
     "test": "node --test"
   },
