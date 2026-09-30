@@ -1,8 +1,8 @@
 # Cobertura do portfólio
 
-Os exemplos são versões independentes das áreas funcionais do aplicativo. A camada de interface, dados reais e configurações operacionais ficaram fora do repositório público.
+These examples are independent versions of the application's functional areas. The interface layer, real data, and operational settings remain outside this public repository.
 
-| Área do aplicativo | Exemplo público |
+| Application area | Public example |
 | --- | --- |
 | Importação de emojis e imagens com nomes seguros | `examples/emoji-import-planner.js` |
 | Economia e recompensas | `examples/economy-service.js` |
