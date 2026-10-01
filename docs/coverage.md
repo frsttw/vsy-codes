@@ -1,26 +1,26 @@
-# Cobertura do portfólio
+# Portfolio coverage
 
 These examples are independent versions of the application's functional areas. The interface layer, real data, and operational settings remain outside this public repository.
 
 | Application area | Public example |
 | --- | --- |
-| Importação de emojis e imagens com nomes seguros | `examples/emoji-import-planner.js` |
-| Economia e recompensas | `examples/economy-service.js` |
-| Loja premium, cargos e pedidos personalizados | `examples/premium-shop-service.js` |
-| Jogo Crash, multiplicadores e cashout | `examples/crash-game.js` |
-| Persistência de economia e migração de dados | `examples/economy-repository.js` |
-| Espelho local de configurações de runtime | `examples/runtime-mirror.js` |
-| Buffer e publicação de logs de atualização | `examples/update-log-buffer.js` |
-| XP, níveis, leaderboard e pódio | `examples/ranking-service.js` |
-| Tickets de suporte e orçamento | `examples/ticket-service.js` |
-| Mensagens automáticas, atualizações e tarefas recorrentes | `examples/automation-scheduler.js` |
-| Filtro de palavras, limites de ações e proteção | `examples/moderation-service.js` |
-| Canais temporários e nomes personalizados | `examples/voice-channel-service.js` |
-| Status persistentes para canais de voz | `examples/voice-status-store.js` |
-| Configurações por comunidade | `examples/config-store.js` |
-| Rotação de mídia e tratamento de nomes de arquivo | `examples/media-library.js` |
-| Verificação de acesso | `examples/verification-service.js` |
-| Painéis, listas e paginação | `examples/panel-state.js` |
-| Limites de integração para texto e música | `examples/integration-gateway.js` |
+| Safe emoji and image imports | `examples/emoji-import-planner.js` |
+| Economy and rewards | `examples/economy-service.js` |
+| Premium shop, roles, and custom orders | `examples/premium-shop-service.js` |
+| Crash game, multipliers, and cashout | `examples/crash-game.js` |
+| Economy persistence and data migration | `examples/economy-repository.js` |
+| Local runtime configuration mirror | `examples/runtime-mirror.js` |
+| Update-log buffering and publishing | `examples/update-log-buffer.js` |
+| XP, levels, leaderboards, and podiums | `examples/ranking-service.js` |
+| Support tickets and assignment | `examples/ticket-service.js` |
+| Automated messages, updates, and recurring jobs | `examples/automation-scheduler.js` |
+| Word filters, action limits, and protection | `examples/moderation-service.js` |
+| Temporary channels and custom names | `examples/voice-channel-service.js` |
+| Persistent voice-channel statuses | `examples/voice-status-store.js` |
+| Community-scoped settings | `examples/config-store.js` |
+| Media rotation and safe filenames | `examples/media-library.js` |
+| Access verification | `examples/verification-service.js` |
+| Panels, lists, and pagination | `examples/panel-state.js` |
+| Text and music integration limits | `examples/integration-gateway.js` |
 
-Os adaptadores de integração recebem clientes já configurados pelo ambiente. Chaves, tokens, IDs, URLs privadas, dados de usuários e histórico de uso não fazem parte dos exemplos.
+Integration adapters receive clients that are already configured by the host environment. Keys, tokens, IDs, private URLs, user data, and usage history are not included in these examples.
