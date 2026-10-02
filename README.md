@@ -6,6 +6,8 @@ Feel free to explore my app ideas and code concepts here. 🚀
 
 This repository is a showcase of the systems and features I build for community applications. The examples focus on clear business rules, validation, and reusable structure while keeping operational data out of the public code.
 
+The public examples are intentionally framework-agnostic building blocks; production integrations, credentials, and operational configuration remain private.
+
 ## Featured code
 
 - [Emoji import planner](examples/emoji-import-planner.js) — scans message content and image files, normalizes names, and avoids collisions.
