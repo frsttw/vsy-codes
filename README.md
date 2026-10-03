@@ -8,6 +8,8 @@ This repository is a showcase of the systems and features I build for community 
 
 The public examples are intentionally framework-agnostic building blocks; production integrations, credentials, and operational configuration remain private.
 
+All examples are validated by the repository's automated Node.js test suite before publication.
+
 ## Featured code
 
 - [Emoji import planner](examples/emoji-import-planner.js) — scans message content and image files, normalizes names, and avoids collisions.
