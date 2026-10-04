@@ -1,4 +1,4 @@
-# Wsp, I'm Frost! 👋
+# Discord systems and web automation examples 👋
 
 ![Frost holding a @frstt sign](./assets/frstt-cover-wide.png)
 
