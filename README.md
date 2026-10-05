@@ -10,6 +10,8 @@ The public examples are intentionally framework-agnostic building blocks; produc
 
 All examples are validated by the repository's automated Node.js test suite before publication.
 
+Run the complete validation suite locally with `npm test`.
+
 ## Featured code
 
 - [Emoji import planner](examples/emoji-import-planner.js) — scans message content and image files, normalizes names, and avoids collisions.
