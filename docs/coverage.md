@@ -24,3 +24,5 @@ These examples are independent versions of the application's functional areas. T
 | Text and music integration limits | `examples/integration-gateway.js` |
 
 Integration adapters receive clients that are already configured by the host environment. Keys, tokens, IDs, private URLs, user data, and usage history are not included in these examples.
+
+Run `npm test` from the repository root to validate every listed example.
