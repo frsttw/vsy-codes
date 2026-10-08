@@ -26,3 +26,5 @@ These examples are independent versions of the application's functional areas. T
 Integration adapters receive clients that are already configured by the host environment. Keys, tokens, IDs, private URLs, user data, and usage history are not included in these examples.
 
 Run `npm test` from the repository root to validate every listed example.
+
+The examples are safe to inspect and run with local test data only.
