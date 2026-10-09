@@ -12,6 +12,8 @@ All examples are validated by the repository's automated Node.js test suite befo
 
 Run the complete validation suite locally with `npm test`.
 
+The test suite runs without external network access or production credentials.
+
 The examples are distributed under the MIT License.
 
 ## Featured code
