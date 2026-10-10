@@ -16,6 +16,8 @@ The test suite runs without external network access or production credentials.
 
 The examples are distributed under the MIT License.
 
+Runtime requirement: Node.js with the built-in test runner.
+
 ## Featured code
 
 - [Emoji import planner](examples/emoji-import-planner.js) — scans message content and image files, normalizes names, and avoids collisions.
