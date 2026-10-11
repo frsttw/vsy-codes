@@ -27,4 +27,6 @@ Integration adapters receive clients that are already configured by the host env
 
 Run `npm test` from the repository root to validate every listed example.
 
+Run the same command before submitting changes so each example remains reproducible offline.
+
 The examples are safe to inspect and run with local test data only.
