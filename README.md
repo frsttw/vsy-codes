@@ -38,3 +38,5 @@ Runtime requirement: Node.js with the built-in test runner.
 - [Voice channels](examples/voice-channel-service.js) — temporary channels and owner controls.
 - [Voice status store](examples/voice-status-store.js) — persistent channel statuses with validation, isolated configuration, and scope cleanup.
 - [Media, verification, panels, and integrations](docs/coverage.md) — full feature map for the portfolio.
+
+Before opening a pull request, run `npm test` locally and keep examples deterministic and offline-friendly.
