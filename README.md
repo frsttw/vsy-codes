@@ -40,3 +40,5 @@ Runtime requirement: Node.js with the built-in test runner.
 - [Media, verification, panels, and integrations](docs/coverage.md) — full feature map for the portfolio.
 
 Before opening a pull request, run `npm test` locally and keep examples deterministic and offline-friendly.
+
+The test suite uses Node.js' built-in runner, so no additional test framework setup is required.
