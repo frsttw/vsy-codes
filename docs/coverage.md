@@ -31,4 +31,6 @@ Run the same command before submitting changes so each example remains reproduci
 
 Keep test fixtures local and deterministic so validation does not depend on external services.
 
+Reviewers can reproduce the documented coverage with a clean checkout and one `npm test` command.
+
 The examples are safe to inspect and run with local test data only.
