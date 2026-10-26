@@ -42,3 +42,7 @@ Runtime requirement: Node.js with the built-in test runner.
 Before opening a pull request, run `npm test` locally and keep examples deterministic and offline-friendly.
 
 The test suite uses Node.js' built-in runner, so no additional test framework setup is required.
+
+Keep public examples focused, deterministic, and safe to run without external credentials.
+
+Changes to examples should include a focused test or documentation update that explains the behavior.
