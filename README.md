@@ -46,3 +46,5 @@ The test suite uses Node.js' built-in runner, so no additional test framework se
 Keep public examples focused, deterministic, and safe to run without external credentials.
 
 Changes to examples should include a focused test or documentation update that explains the behavior.
+
+Prefer small, reviewable updates that preserve the examples' public and offline-friendly scope.
