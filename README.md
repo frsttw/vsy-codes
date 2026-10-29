@@ -48,3 +48,5 @@ Keep public examples focused, deterministic, and safe to run without external cr
 Changes to examples should include a focused test or documentation update that explains the behavior.
 
 Prefer small, reviewable updates that preserve the examples' public and offline-friendly scope.
+
+Document user-visible behavior changes next to the example they affect.
