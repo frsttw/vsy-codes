@@ -50,3 +50,5 @@ Changes to examples should include a focused test or documentation update that e
 Prefer small, reviewable updates that preserve the examples' public and offline-friendly scope.
 
 Document user-visible behavior changes next to the example they affect.
+
+Use clear, English commit messages so the project history remains easy to audit.
